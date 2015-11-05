@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 @SuppressLint("InflateParams") public class ListAdapter extends BaseAdapter {
@@ -29,10 +30,9 @@ import android.widget.TextView;
 		this.context=context;
 
 
-		inflater = ( LayoutInflater )context.
-				getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater = ( LayoutInflater )context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		//notifyDataSetChanged();
+		
 
 	}
 
@@ -59,7 +59,7 @@ import android.widget.TextView;
 	{
 		TextView tv;
 		TextView tv2;
-
+		ImageButton delete;
 
 	}
 
@@ -72,12 +72,41 @@ import android.widget.TextView;
 		rowView = inflater.inflate(R.layout.listview_each_item, null);
 		holder.tv=(TextView) rowView.findViewById(R.id.textViewNome);
 		holder.tv2=(TextView) rowView.findViewById(R.id.textViewTelefone);
-
-
-		
+		holder.delete = (ImageButton) rowView.findViewById(R.id.delete);		
 
 		holder.tv.setText(result.get(position).getNome());
 		holder.tv2.setText(result.get(position).getTelefone());
+		
+		final android.content.DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+				 switch (which){
+			        case DialogInterface.BUTTON_POSITIVE:
+			            result.remove(position);
+			            notifyDataSetChanged();
+			            break;
+
+			        case DialogInterface.BUTTON_NEGATIVE:
+			            //No button clicked
+			            break;
+			        }
+				
+			}
+		};
+		
+		holder.delete.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setMessage("Tem certeza que deseja excluir?").setPositiveButton("Sim", dialogClickListener)
+				    .setNegativeButton("Não", dialogClickListener).show();
+				
+			}
+		});
 
 		rowView.setOnClickListener(new OnClickListener() {
 			
