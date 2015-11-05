@@ -17,7 +17,7 @@ public class ListAdapter extends BaseAdapter {
 
 
 
-	public ListAdapter(MainActivity context, ArrayList<Cliente> lista) {
+	public ListAdapter(listClientes context, ArrayList<Cliente> lista) {
 		super();
 		result=lista;
 
@@ -31,6 +31,7 @@ public class ListAdapter extends BaseAdapter {
 		//notifyDataSetChanged();
 
 	}
+
 
 	@Override
 	public int getCount() {

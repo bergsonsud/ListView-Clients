@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D1FFFF"
+    android:orientation="vertical">
+
+        <ImageButton
+        android:id="@+id/imgbtnClientes"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/clientes" />
+
+    <ImageButton
+        android:id="@+id/imgbtnChamados"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignTop="@+id/imgbtnClientes"
+        android:layout_toRightOf="@+id/imgbtnClientes"
+        android:scaleType="fitXY"
+        android:src="@drawable/chamadospng" />
+    
+
+   
+  </RelativeLayout>

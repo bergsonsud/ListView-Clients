@@ -1,20 +1,16 @@
 package com.example.listview;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -28,70 +24,23 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-
-		context = this;
-		listView=(ListView) findViewById(R.id.listViewSMS);	
-
-		final ArrayList<Cliente> lista = new ArrayList<Cliente>();
-
-
-		lista.add(new Cliente("Bergson", "986225910", "bergsonsud@gmail.com"));
-		lista.add(new Cliente("Bruno", null, "brunolima@gmail.com"));
-		lista.add(new Cliente("Kamyla", "988998899", "kamila@gmail.com"));
-		lista.add(new Cliente("Alana", null, null));
-		lista.add(new Cliente("Camila", null, null));
-
-
-
-		// Create the Adapter
-		ListAdapter=new ListAdapter(this,lista);
-
-		// Set The Adapter to ListView
-		listView.setAdapter(ListAdapter);
-
-		// to handle click event on listView item
-		listView.setOnItemClickListener(new OnItemClickListener()
-		{
-			public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
-			{
-
-				TextView n=(TextView)v.findViewById(R.id.textViewNome);
-				String nome=n.getText().toString();
-				String email = lista.get(position).getEmail();
-				String telefone = lista.get(position).getTelefone();
+		setContentView(R.layout.main);
+		
+		ImageButton imgbtnCli = (ImageButton) findViewById(R.id.imgbtnClientes);
+		
+		imgbtnCli.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				
+				Intent intent = new Intent(MainActivity.this,listClientes.class);
+				startActivity(intent);
+				finish();
 				
 				
-				if (email == null) {
-					email = "Email não definido";
-				}
-				
-				if (telefone == null) {
-					telefone = "Telefone não definido";
-				}
-
-
-
-				// Show The Dialog with Selected Client
-				AlertDialog dialog = new AlertDialog.Builder(context).create();
-				dialog.setTitle(nome);
-				dialog.setIcon(android.R.drawable.ic_dialog_info);
-				
-				dialog.setMessage("Email: "+email+" Telefone: "+telefone);
-				dialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK",
-						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which)
-					{
-
-						dialog.dismiss();
-						return;
-					}   
-				});
-				dialog.show();
-
-
 			}
 		});
+
 	}
 
 	@Override
