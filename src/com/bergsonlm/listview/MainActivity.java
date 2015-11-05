@@ -1,5 +1,10 @@
-package com.example.listview;
+package com.bergsonlm.listview;
 
+import com.example.listview.R;
+
+import activities.ChamadoActivity;
+import activities.ClientesActivity;
+import adapters.ClienteAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +21,7 @@ public class MainActivity extends Activity {
 
 	ListView listView;
 	Cursor cursor;
-	ListAdapter ListAdapter;
+	ClienteAdapter ListAdapter;
 	Context context;
 
 
@@ -27,15 +32,29 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		
 		ImageButton imgbtnCli = (ImageButton) findViewById(R.id.imgbtnClientes);
+		ImageButton imgbtnChamado = (ImageButton) findViewById(R.id.imgbtnChamados);
 		
 		imgbtnCli.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				
-				Intent intent = new Intent(MainActivity.this,listClientes.class);
+				Intent intent = new Intent(MainActivity.this,ClientesActivity.class);
 				startActivity(intent);
-	//			finish();
+
+				
+				
+			}
+		});
+		
+		imgbtnChamado.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				
+				Intent intent = new Intent(MainActivity.this,ChamadoActivity.class);
+				startActivity(intent);
+
 				
 				
 			}

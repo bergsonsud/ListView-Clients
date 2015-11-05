@@ -1,7 +1,10 @@
-package com.example.listview;
+package activities;
 
 import java.util.ArrayList;
 
+import com.example.listview.R;
+
+import adapters.ChamadoAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,37 +12,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import entidades.Chamado;
 
-public class listClientes extends Activity {
+public class ChamadoActivity extends Activity {
 
 	ListView listView;
 	Cursor cursor;
-	ListAdapter ListAdapter;
+	ChamadoAdapter ListAdapter;
 	Context context;
 
-	final ArrayList<Cliente> lista = new ArrayList<Cliente>();
+	final ArrayList<Chamado> lista = new ArrayList<Chamado>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.chamado);
 
 		context = this;
-		listView=(ListView) findViewById(R.id.listClientes);	
+		listView=(ListView) findViewById(R.id.listChamados);	
 
 
 
 
-		lista.add(new Cliente("Bergson", "986225910", "bergsonsud@gmail.com"));
-		lista.add(new Cliente("Bruno", null, "brunolima@gmail.com"));
-		lista.add(new Cliente("Kamyla", "988998899", "kamila@gmail.com"));
-		lista.add(new Cliente("Alana", null, null));
-		lista.add(new Cliente("Camila", null, null));
+		lista.add(new Chamado("Berg"));
+	
 
 
 
 		// Create the Adapter
-		ListAdapter=new ListAdapter(this,lista);
+		ListAdapter=new ChamadoAdapter(this,lista);
 
 		// Set The Adapter to ListView
 		listView.setAdapter(ListAdapter);

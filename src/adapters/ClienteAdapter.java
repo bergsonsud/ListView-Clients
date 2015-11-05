@@ -1,7 +1,10 @@
-package com.example.listview;
+package adapters;
 
 import java.util.ArrayList;
 
+import com.example.listview.R;
+
+import activities.ClientesActivity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,8 +16,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import entidades.Cliente;
 
-@SuppressLint("InflateParams") public class ListAdapter extends BaseAdapter {
+@SuppressLint("InflateParams") public class ClienteAdapter extends BaseAdapter {
 
 	ArrayList<Cliente> result;    
 	Context context;
@@ -22,7 +26,7 @@ import android.widget.TextView;
 
 
 
-	public ListAdapter(listClientes context, ArrayList<Cliente> lista) {
+	public ClienteAdapter(ClientesActivity context, ArrayList<Cliente> lista) {
 		super();
 		result=lista;
 
@@ -69,7 +73,7 @@ import android.widget.TextView;
 
 		final Holder holder=new Holder();
 		View rowView;       
-		rowView = inflater.inflate(R.layout.listview_each_item, null);
+		rowView = inflater.inflate(R.layout.cliente_each_item, null);
 		holder.tv=(TextView) rowView.findViewById(R.id.textViewNome);
 		holder.tv2=(TextView) rowView.findViewById(R.id.textViewTelefone);
 		holder.delete = (ImageButton) rowView.findViewById(R.id.delete);		
