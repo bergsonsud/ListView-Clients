@@ -3,18 +3,12 @@ package com.example.listview;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class listClientes extends Activity {
 
@@ -23,7 +17,7 @@ public class listClientes extends Activity {
 	ListAdapter ListAdapter;
 	Context context;
 
-
+	final ArrayList<Cliente> lista = new ArrayList<Cliente>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +25,9 @@ public class listClientes extends Activity {
 		setContentView(R.layout.activity_main);
 
 		context = this;
-		listView=(ListView) findViewById(R.id.listViewSMS);	
+		listView=(ListView) findViewById(R.id.listClientes);	
 
-		final ArrayList<Cliente> lista = new ArrayList<Cliente>();
+
 
 
 		lista.add(new Cliente("Bergson", "986225910", "bergsonsud@gmail.com"));
@@ -50,48 +44,7 @@ public class listClientes extends Activity {
 		// Set The Adapter to ListView
 		listView.setAdapter(ListAdapter);
 
-		// to handle click event on listView item
-		listView.setOnItemClickListener(new OnItemClickListener()
-		{
-			public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3)
-			{
-
-				TextView n=(TextView)v.findViewById(R.id.textViewNome);
-				String nome=n.getText().toString();
-				String email = lista.get(position).getEmail();
-				String telefone = lista.get(position).getTelefone();
-				
-				
-				if (email == null) {
-					email = "Email não definido";
-				}
-				
-				if (telefone == null) {
-					telefone = "Telefone não definido";
-				}
-
-
-
-				// Show The Dialog with Selected Client
-				AlertDialog dialog = new AlertDialog.Builder(context).create();
-				dialog.setTitle(nome);
-				dialog.setIcon(android.R.drawable.ic_dialog_info);
-				
-				dialog.setMessage("Email: "+email+" Telefone: "+telefone);
-				dialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK",
-						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which)
-					{
-
-						dialog.dismiss();
-						return;
-					}   
-				});
-				dialog.show();
-
-
-			}
-		});
+		
 	}
 
 	@Override
