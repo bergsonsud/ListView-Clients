@@ -34,7 +34,8 @@ public class ChamadoActivity extends Activity {
 
 
 
-		lista.add(new Chamado("Berg"));
+		lista.add(new Chamado("Ajuste Site","Studio Danilo","1", "2"));
+		lista.add(new Chamado("Imagens não aparecem","Fátima Lima", "4", "1"));
 	
 
 
