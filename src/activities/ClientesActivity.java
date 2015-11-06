@@ -30,9 +30,9 @@ public class ClientesActivity extends Activity {
 	Cursor cursor;
 	ClienteAdapter ListAdapter;
 	Context context;
-	String urlJsonArry = "http://bergsonlm.com/cliente";
-	ProgressDialog pDialog;
-	private ArrayList<Cliente> listClientes = new ArrayList<Cliente>();
+	private String urlJsonArry = "http://bergsonlm.com/andro_cli";
+	private ProgressDialog pDialog;
+	private ArrayList<Cliente> lista = new ArrayList<Cliente>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +50,7 @@ public class ClientesActivity extends Activity {
 	    makeRequest();
 
 
-
-
-	    /*	lista.add(new Cliente("Bergson", "986225910", "bergsonsud@gmail.com"));
-		lista.add(new Cliente("Bruno", null, "brunolima@gmail.com"));
-		lista.add(new Cliente("Kamyla", "988998899", "kamila@gmail.com"));
-		lista.add(new Cliente("Alana", null, null));
-		lista.add(new Cliente("Camila", null, null));
-
-
-
-		// Create the Adapter
-		ListAdapter=new ClienteAdapter(this,lista);
-
-		// Set The Adapter to ListView
-		listView.setAdapter(ListAdapter);*/
-
-		
+	
 	}
 
 	
@@ -86,10 +70,10 @@ public class ClientesActivity extends Activity {
                      	JSONObject obj = (JSONObject) response.get(i);                     
                      	String nome = obj.getString("nome");
                      	String telefone = obj.getString("telefone");
-                     	String email = obj.getString("telefone");
+                     	String email = obj.getString("email");
  
                      	Cliente cliente = new Cliente(nome,telefone,email);
-                     	listClientes.add(cliente);
+                     	lista.add(cliente);
                      	
                          
                      } catch (JSONException e) {
@@ -98,7 +82,8 @@ public class ClientesActivity extends Activity {
                  }
                                
                  
-                 ListAdapter=new ClienteAdapter(ClientesActivity.this,listClientes);
+                 ListAdapter=new ClienteAdapter(ClientesActivity.this,lista);
+                 listView.setAdapter(ListAdapter);
                  hidepDialog();
              }
 
