@@ -29,7 +29,7 @@ public class ChamadoActivity extends Activity {
 		setContentView(R.layout.chamado);
 
 		context = this;
-		listView=(ListView) findViewById(R.id.listChamados);	
+		listView=(ListView) findViewById(R.id.listClientes);	
 
 
 
